@@ -1,10 +1,13 @@
 module WithSeoCtrl
   extend ActiveSupport::Concern
 
-  def seo_block
-    @seo_block ||= Seo::Finder.new(request.path, seo_object).find
+  included do
+    helper_method :seo_block
   end
-  helper_method :seo_block
+
+  def seo_block
+    @seo_block ||= Redde::Seo::Finder.new(request.path, seo_object).find
+  end
 
   def seo_object
     nil

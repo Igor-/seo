@@ -18,4 +18,8 @@ class Redde::Seo < ActiveRecord::Base
   def empty?
     !(title.present? && keywords.present? && description.present?)
   end
+
+  def self.model_name
+    ActiveModel::Name.new(self, nil, 'Seo')
+  end
 end

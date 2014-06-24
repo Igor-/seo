@@ -1,35 +1,35 @@
 # coding: utf-8
 class Admin::SeosController < Admin::BaseController
   def index
-    @seos = Seo.empty
+    @seos = Redde::Seo.empty
   end
 
   def all
-    @seos = Seo.all
+    @seos = Redde::Seo.all
     render 'index'
   end
 
   def new
-    @seo = Seo.new
+    @seo = Redde::Seo.new
     render 'edit'
   end
 
   def edit
-    @seo = Seo.find(params[:id])
+    @seo = Redde::Seo.find(params[:id])
   end
 
   def create
-    @seo = Seo.new(seo_params)
-    redirect_or_edit(@seo.save)
+    @seo = Redde::Seo.new(seo_params)
+    redirect_or_edit(@seo, @seo.save)
   end
 
   def update
-    @seo = Seo.find(params[:id])
-    redirect_or_edit(@seo.update_attributes(seo_params))
+    @seo = Redde::Seo.find(params[:id])
+    redirect_or_edit(@seo, @seo.update_attributes(seo_params))
   end
 
   def destroy
-    @seo = Seo.find(params[:id])
+    @seo = Redde::Seo.find(params[:id])
     @seo.destroy
     redirect_to admin_seos_path, notice: 'Seo удален.'
   end

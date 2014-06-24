@@ -1,0 +1,18 @@
+- content_for(:page_header) do
+  %h1= tplural Product
+  %p= link_to "Добавить #{taccusative('product')}", [:new, :admin, :product]
+
+- unless @products.empty?
+  %table.list
+    %colgroup
+      %col
+      %col.w1
+    %thead
+      %tr
+        %th= Product.human_attribute_name('name')
+        %th
+    - @products.each do |product|
+      %tr
+        %td= link_to product.name, [:edit, :admin, product]
+        %td= link_to 'Удалить', [:admin, product], method: :delete, data: { confirm: 'Точно Удалить?' }, class: :del
+

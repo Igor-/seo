@@ -21,4 +21,8 @@ class Redde::Seo::ProductSeo
   def keywords
     ''
   end
+
+  def text
+    title
+  end
 end

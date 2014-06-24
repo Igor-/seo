@@ -1,0 +1,18 @@
+- content_for :page_header do
+  %h1
+    - if @product.new_record?
+      Добавить #{taccusative(:product)}
+    - else
+      Редактировать #{taccusative(:product)}
+  %p= link_to 'Назад', [:admin, :products]
+
+= form_for [:admin, @product] do |f|
+  = render 'validate', { f: f }
+  %table
+    %tr
+      %th= f.label :name
+      %td= f.text_field :name
+  = render 'admin/seos/block', f: f
+  .actions
+    = f.submit 'Сохранить'
+    = f.submit 'Применить'

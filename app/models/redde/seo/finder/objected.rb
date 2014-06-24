@@ -21,7 +21,7 @@ class Redde::Seo::Finder::Objected
   end
 
   def updated_object_seo
-    update(url: url) if seo.url != url
+    seo.update(url: url) if seo.url != url
     seo
   end
 

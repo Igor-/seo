@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   mount ReddeSeo::Engine, at: '/redde/seo'
 
+  resources :articles
+  resources :products
+
   namespace :admin do
+    root 'base#welcome'
+    resources :products
+    resources :articles
+
     resources :seos do
       get 'all', on: :collection
     end

@@ -51,7 +51,7 @@ Define `seo_object` method when needed:
 Insert this block in the end of the form (before submit):
 
 	...	
-	= render "admin/seos/block", f: f
+	= render 'admin/seos/block', f: f
 	
 	= f.submit
 	
