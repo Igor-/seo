@@ -1,17 +1,8 @@
 # coding: utf-8
 
-class Redde::Seo::ProductSeo
-  attr_accessor :product
-  def initialize(product)
-    @product = product
-  end
-
-  def empty?
-    false
-  end
-
+class Redde::Seo::ProductSeo < Redde::Seo::Template
   def title
-    "#{product.name.gsub('\r\n', ' ')} hop"
+    "#{objekt.name.gsub('\r\n', ' ')} hop"
   end
 
   def description

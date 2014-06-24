@@ -1,20 +1,25 @@
 # coding: utf-8
 
-class Redde::Seo::DefaultSeo
+class Redde::Seo::Template
+  attr_accessor :objekt
+  def initialize(objekt)
+    @objekt = objekt
+  end
+
   def empty?
     false
   end
 
   def title
-    'Redde'
+    ''
   end
 
   def description
-    'Redde'
+    ''
   end
 
   def keywords
-    'Redde'
+    ''
   end
 
   def text
