@@ -1,41 +1,52 @@
 # coding: utf-8
 
-module Redde::Seo::Finder::Objected
-  def find_object_seo
-    return templated_object_seo if templated?
-    find_object_seo_from_db
+class Redde::Seo::Finder::Objected
+  attr_accessor :url, :objekt, :seo
+
+  def initialize(url, objekt)
+    @url = url
+    @objekt = objekt
+    @seo = Redde::Seo.for_object(objekt).first
+  end
+
+  def find
+    return updated_object_seo if seo && !seo.empty?
+    return templated_seo if templated?
+    create_seo
+    default_seo
+  end
+
+  def default_seo
+    Redde::Seo::DefaultSeo.new
+  end
+
+  def updated_object_seo
+    update(url: url) if seo.url != url
+    seo
   end
 
   def object_class_name
-    @object.class.name
+    objekt.class.name
   end
 
   def templated?
     Redde::Seo::CustomClassNames::NAMES.include? object_class_name
   end
 
-  def templated_object_seo
-    "Redde::Seo::#{object_class_name}Seo".constantize.new(@object)
+  def templated_seo
+    "Redde::Seo::#{object_class_name}Seo".constantize.new(objekt)
   end
 
-  def find_object_seo_from_db
-    return default_or_existing_object_seo if object_seo_from_db
-    create_object_seo
-    default_seo
+  def objekt_params
+    { seoable_id: objekt.id, seoable_type: objekt.class.name }
   end
 
-  def default_or_existing_object_seo
-    return default_seo if object_seo_from_db.empty?
-    object_seo_from_db.update(url: @url) unless object_seo_from_db.url != @url
-    object_seo_from_db
+  def seo_params
+    objekt_params.merge(url: url)
   end
 
-  def object_seo_from_db
-    @object_seo ||= Redde::Seo.where(seoable_type: @object.class.name, seoable_id: @object.id).try(:first)
-  end
-
-  def create_object_seo
-    s = Redde::Seo.new(seoable_id: @object.id, seoable_type: @object.class.name, url: @url, skip_basic_validation: true)
-    s.save if @object.try(:id) && @object.try(:class).try(:name)
+  def create_seo
+    s = Redde::Seo.new(seo_params.merge(skip_basic_validation: true))
+    s.save if objekt.try(:id) && objekt.try(:class).try(:name)
   end
 end

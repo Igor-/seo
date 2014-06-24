@@ -8,12 +8,12 @@ module Redde::Seo::Finder::Urled
   end
 
   def default_or_existing_urled_seo
-    return default_seo if urled_seo_from_db.empty?
+    return default_seo if urled_seo_from_db.nil?
     urled_seo_from_db
   end
 
   def urled_seo_from_db
-    @urled_seo ||= ::Redde::Seo.where(url: url).try(:first)
+    @urled_seo ||= ::Redde::Seo.for_url(url).first
   end
 
   def create_urled_seo

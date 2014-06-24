@@ -5,36 +5,36 @@ require 'spec_helper'
 describe Redde::SeoValidator do
   let(:seo) { create(:seo, seoable_type: 'Article', seoable_id: 1, skip_basic_validation: true) }
 
-  it "Сохраняет сео с url" do
+  it 'saves seo with url' do
     seo.seoable_type = nil; seo.seoable_id = nil
     expect(seo.valid?).to eq true
   end
 
-  it "Сохраняет сео с объектом" do
+  it 'saves seo with object' do
     seo.url = nil
     expect(seo.valid?).to eq true
   end
 
-  it "не сохраняет пустое сео" do
+  it 'does not save empty seo' do
     seo.url = nil; seo.seoable_type = nil; seo.seoable_id = nil
     expect(seo.valid?).to eq false
   end
 
-  it "сохраняет сео с url и объектом" do
+  it 'saves seo with url and object' do
     expect(seo.valid?).to eq true
   end
 
-  it "не сохраняет сео с одинаковыми url" do
+  it 'does not create seo with same urls' do
     seo.seoable_type = nil; seo.seoable_id = nil
     seo.save
-    nseo = Redde::Seo.new(url: "/url")
+    nseo = Redde::Seo.new(url: '/url')
     expect(nseo.valid?).to eq false
   end
 
-  it "не сохраняет сео с одинаковыми объектами" do
+  it 'does not save seo with same objects' do
     seo.url = nil
     seo.save
-    nseo = Redde::Seo.new(seoable_type: "Article", seoable_id: 1)
+    nseo = Redde::Seo.new(seoable_type: 'Article', seoable_id: 1)
     expect(nseo.valid?).to eq false
   end
 end

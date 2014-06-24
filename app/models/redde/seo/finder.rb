@@ -1,10 +1,9 @@
 # coding: utf-8
 
 class Redde::Seo::Finder
-  include Objected
   include Urled
 
-  attr_accessor :url, :object, :result
+  attr_accessor :url, :object, :result, :object_seo
 
   def initialize(url, object = nil)
     @url = url
@@ -16,6 +15,10 @@ class Redde::Seo::Finder
     @result = find_url_seo if result.nil?
     @result = default_seo if result.nil?
     @result
+  end
+
+  def find_object_seo
+    Redde::Seo::Finder::Objected.new(url, object).find
   end
 
   def default_seo

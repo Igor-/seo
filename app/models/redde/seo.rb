@@ -5,8 +5,8 @@ class Redde::Seo < ActiveRecord::Base
 
   belongs_to :seoable, polymorphic: true
 
-  scope :for_controller_action, ->(u) { where(url: u).first }
-  scope :for_seo_object, ->(o) { where(seoable_type: o.class.name, seoable_id: o.id).first }
+  scope :for_url, ->(u) { where(url: u) }
+  scope :for_object, ->(o) { where(seoable_type: o.class.name, seoable_id: o.id) }
   scope :empty, -> { where("title is null or title = '' or keywords is null or keywords = '' or description is null or description = ''") }
 
   validates :title, :keywords, :description, length: { minimum: 5 }, allow_blank: true, unless: :skip_basic_validation

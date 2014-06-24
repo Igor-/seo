@@ -11,7 +11,7 @@ class Redde::Seo::ProductSeo
   end
 
   def title
-    "#{product.name.gsub('\r\n', ' ')}"
+    "#{product.name.gsub('\r\n', ' ')} hop"
   end
 
   def description

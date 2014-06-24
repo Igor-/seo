@@ -10,7 +10,7 @@ class Redde::SeoValidator
   def validate
     empty_fields
     if valid?
-      check_controller_uniqueness
+      check_url_uniqueness
       check_object_uniqueness
     end
   end
@@ -23,16 +23,24 @@ class Redde::SeoValidator
     seo.persisted? ? 1 : 0
   end
 
-  def check_controller_uniqueness
-    @seo.errors[:base] << 'Нарушение уникальности привязки. Два разных сео не могут быть привязаны к одному url' if url_present? && Redde::Seo.where(url: seo.url).count > edit_or_create_count
+  def check_url_uniqueness
+    @seo.errors[:base] << 'Нарушение уникальности привязки. Два разных сео не могут быть привязаны к одному url' if url_uniq?
+  end
+
+  def url_uniq?
+    url_present? && Redde::Seo.where(url: seo.url).count > edit_or_create_count
   end
 
   def check_object_uniqueness
-    @seo.errors[:base] << 'Нарушение уникальности привязки. Два разных сео не могут быть привязаны к одному объекту' if object_present? && Redde::Seo.where(seoable_type: @seo.seoable_type, seoable_id: @seo.seoable_id).count > edit_or_create_count
+    @seo.errors[:base] << 'Нарушение уникальности привязки. Два разных сео не могут быть привязаны к одному объекту' if object_uniq?
+  end
+
+  def object_uniq?
+    object_present? && Redde::Seo.where(seoable_type: @seo.seoable_type, seoable_id: @seo.seoable_id).count > edit_or_create_count
   end
 
   def empty_fields
-    @seo.errors[:base] << 'Отсутствует привязка. Сео дожно быть привязано к экшену контроллера или объекту' unless any_field_present?
+    @seo.errors[:base] << 'Отсутствует привязка. Сео дожно быть привязано к url или объекту' unless any_field_present?
   end
 
   def any_field_present?
