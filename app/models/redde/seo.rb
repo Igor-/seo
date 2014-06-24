@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class Redde::Seo < ActiveRecord::Base
   attr_accessor :skip_basic_validation
 

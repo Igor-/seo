@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class Redde::Seo::ProductSeo
   attr_accessor :product
   def initialize(product)

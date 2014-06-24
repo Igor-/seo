@@ -1,3 +1,5 @@
+# coding: utf-8
+
 module Redde::Seo::Finder::Urled
   def find_url_seo
     return default_or_existing_urled_seo if urled_seo_from_db

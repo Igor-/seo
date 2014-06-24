@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class Redde::SeoValidator
   attr_accessor :seo
 

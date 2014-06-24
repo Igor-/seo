@@ -1,3 +1,5 @@
+# coding: utf-8
+
 module Redde::Seo::Finder::Objected
   def find_object_seo
     return templated_object_seo if templated?
