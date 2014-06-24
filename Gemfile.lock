@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    redde_seo (0.0.1)
+    redde_seo (0.0.2)
       rails (>= 3)
 
 GEM
