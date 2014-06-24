@@ -1,0 +1,21 @@
+- content_for :page_header do
+  %h1 Редактировать SEO
+
+= form_for [:admin, @seo] do |f|
+  - if @seo.errors.any?
+    #error_explanation
+      %h2= "Ошибки при сохранении: #{@seo.errors.count}"
+      %ul
+        - @seo.errors.full_messages.each do |msg|
+          %li= msg
+  %table
+    - if @seo.url.present?
+      %tr
+        %th{colspan: 2}= "#{@seo.url}"
+    - if @seo.seoable_type.present? && @seo.seoable_id.present?
+      %tr
+        %th{colspan: 2}= "#{@seo.seoable_type}@#{@seo.seoable_id}"
+    = render 'form', f: f
+  .actions
+    = f.submit 'Сохранить'
+    = f.submit 'Применить'

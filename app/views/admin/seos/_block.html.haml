@@ -1,0 +1,5 @@
+%h3 SEO
+%table
+  - f.object.build_seo unless f.object.seo
+  = f.fields_for :seo do |s|
+    = render 'admin/seos/form', f: s
