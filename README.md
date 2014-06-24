@@ -94,4 +94,8 @@ Create template for your model (Product):
       def keywords
         ''
       end
+      
+      def text
+        ''
+      end
     end
