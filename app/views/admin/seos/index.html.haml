@@ -10,22 +10,19 @@
       %col
       %col
       %col
-      %col
       %col.w1
     %thead
       %tr
         %th Url
         %th Объект
         %th Тайтл
-        %th Кейвордс
-        %th Дескрипшен
+        %th Заполнено?
         %th
     - @seos.each do |seo|
       %tr
-        %td= link_to "#{seo.url}" || 'НЕ ЗАПОЛНЕНО', [:edit, :admin, seo]
-        %td= link_to "#{seo.seoable_type}@#{seo.seoable_id}" || 'НЕ ЗАПОЛНЕНО', [:edit, :admin, seo]
-        %td= link_to seo.title || 'НЕ ЗАПОЛНЕНО', [:edit, :admin, seo]
-        %td= link_to seo.keywords || 'НЕ ЗАПОЛНЕНО', [:edit, :admin, seo]
-        %td= link_to seo.description || 'НЕ ЗАПОЛНЕНО', [:edit, :admin, seo]
+        %td= seo_link_for_url(seo)
+        %td= seo_link_for_object(seo)
+        %td= seo_title_for(seo)
+        %td= seo_empty_for(seo)
         %td= link_to 'Удалить', [:admin, seo], method: :delete, data: { confirm: 'Удалить?' }, class: :del
 

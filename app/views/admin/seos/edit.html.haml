@@ -11,10 +11,10 @@
   %table
     - if @seo.url.present?
       %tr
-        %th{colspan: 2}= "#{@seo.url}"
+        %th{colspan: 2}= seo_url_for(@seo)
     - if @seo.seoable_type.present? && @seo.seoable_id.present?
       %tr
-        %th{colspan: 2}= "#{@seo.seoable_type}@#{@seo.seoable_id}"
+        %th{colspan: 2}= seo_object_for(@seo)
     = render 'form', f: f
   .actions
     = f.submit 'Сохранить'
