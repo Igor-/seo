@@ -4,7 +4,7 @@ module Redde::Seo::SeosHelper
   end
 
   def seo_url_for(seo)
-    title = truncate(seo.url, length: 17)
+    title = truncate(seo.url, length: 40)
     title.present? ? title : 'НЕ ЗАПОЛНЕНО'
   end
 
@@ -18,7 +18,7 @@ module Redde::Seo::SeosHelper
   end
 
   def seo_title_for(seo)
-    title = seo.title.present? ? seo.title : 'НЕ ЗАПОЛНЕНО'
+    title = seo.title.present? ? truncate(seo.title, length: 17) : 'НЕ ЗАПОЛНЕНО'
     link_to title, [:edit, :admin, seo], alt: seo.url, title: seo.url
   end
 
