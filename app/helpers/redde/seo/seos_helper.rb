@@ -1,3 +1,5 @@
+# coding: utf-8
+
 module Redde::Seo::SeosHelper
   def seo_link_for_url(seo)
     link_to seo_url_for(seo), [:edit, :admin, seo], alt: seo.url, title: seo.url
