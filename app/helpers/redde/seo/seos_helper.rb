@@ -2,9 +2,7 @@
 
 module Redde::Seo::SeosHelper
   def seo_empty_link(name, key)
-    content_tag :p do
-      link_to name, params.merge(empty: key), class: ['phead-side__link', ('_active' if params[:empty] == key.to_s)]
-    end
+    link_to name, params.merge(empty: key), class: ['phead-side__link', ('_active' if params[:empty] == key.to_s)]
   end
 
   def seo_type_link(name, key)

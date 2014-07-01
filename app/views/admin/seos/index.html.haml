@@ -1,8 +1,11 @@
 - content_for(:page_header) do
   %h1 SEO
-  = seo_empty_link('Все', nil)
-  = seo_empty_link('Пустые', true)
-  = seo_empty_link('Полные', false)
+  %p
+    = seo_empty_link('Все', nil)
+    |
+    = seo_empty_link('Пустые', true)
+    |
+    = seo_empty_link('Полные', false)
   %nav.phead-tabs
     - @categories.each do |name, key|
       = seo_type_link(name, key)
@@ -28,5 +31,8 @@
         %td= seo_title_for(seo)
         %td= seo_empty_for(seo)
         %td= link_to 'Удалить', [:admin, seo], method: :delete, data: { confirm: 'Удалить?' }, class: :del
-  = paginate @seos
+  - begin
+    = paginate @seos, theme: :redde
+  - rescue
+    = paginate @seos
 
