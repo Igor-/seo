@@ -1,8 +1,9 @@
 # coding: utf-8
 
 module Redde::Seo::SeosHelper
-  def seo_empty_link(name, key)
-    link_to name, params.merge(empty: key), class: ['phead-side__link', ('_active' if params[:empty] == key.to_s)]
+  def seo_empty_link(name, key = nil)
+    return name if params[:empty].to_s == key.to_s
+    link_to name, url_for(params.merge(empty: key))
   end
 
   def seo_type_link(name, key)
