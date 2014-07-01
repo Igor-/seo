@@ -1,7 +1,8 @@
 # coding: utf-8
 class Admin::SeosController < Admin::BaseController
+  before_action :set_categories
   def index
-    @seos = Redde::Seo.empty
+    @seos = Redde::Seo.for_empty(params[:empty]).for_type(params[:seoable_type]).page(params[:page])
   end
 
   def all
@@ -48,6 +49,10 @@ class Admin::SeosController < Admin::BaseController
     else
       render 'edit'
     end
+  end
+
+  def set_categories
+    @categories = Redde::Seo.categories
   end
 
   def notice_for(obj)

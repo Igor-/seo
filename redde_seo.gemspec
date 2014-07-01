@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 3'
 
   s.add_development_dependency 'pg'
+  s.add_development_dependency 'quiet_assets'
   s.add_development_dependency 'bundler', '~> 1.6'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'redde'

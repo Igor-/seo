@@ -1,6 +1,16 @@
 # coding: utf-8
 
 module Redde::Seo::SeosHelper
+  def seo_empty_link(name, key)
+    content_tag :p do
+      link_to name, params.merge(empty: key), class: ['phead-side__link', ('_active' if params[:empty] == key.to_s)]
+    end
+  end
+
+  def seo_type_link(name, key)
+    link_to name, url_for(params.merge(seoable_type: key)), class: ['phead-tabs__link', ('_active' if params[:seoable_type] == key)]
+  end
+
   def seo_link_for_url(seo)
     link_to seo_url_for(seo), [:edit, :admin, seo], alt: seo.url, title: seo.url
   end
