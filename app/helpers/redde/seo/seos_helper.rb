@@ -15,7 +15,8 @@ module Redde::Seo::SeosHelper
   end
 
   def seo_url_for(seo)
-    title = truncate(seo.url, length: 40)
+    title = CGI.unescape(seo.url || '')
+    title = truncate(title, length: 40)
     title.present? ? title : 'НЕ ЗАПОЛНЕНО'
   end
 
