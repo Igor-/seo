@@ -12,8 +12,8 @@ class Redde::Seo::Finder
 
   def find
     @result = find_object_seo if object.present?
-    @result = find_url_seo if result.nil?
-    @result = default_seo if result.nil?
+    @result = find_url_seo if result.nil? || (result && result.empty?)
+    @result = default_seo if result.nil? || (result && result.empty?)
     @result
   end
 
