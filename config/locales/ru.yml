@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    models:
+      redde/seo:
+        one: SEO
+        acc: SEO
+        other: SEO
+
+    attributes:
+      redde/seo:
+        description: Дескрипшен
+        title: Тайтл
+        keywords: Кейвордс

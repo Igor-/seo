@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      redde/seo:
+        one: SEO
+        acc: SEO
+        other: SEO
+
+    attributes:
+      redde/seo:
+        description: Description
+        title: Title
+        keywords: Keywords
