@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :product do
-    name { Faker::Company.name }
+    name { FFaker::Company.name }
   end
 end

@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :article do
-    title { Faker::Company.name }
+    title { FFaker::Company.name }
   end
 end
