@@ -3,11 +3,11 @@
 module Redde::Seo::SeosHelper
   def seo_empty_link(name, key = nil)
     return name if params[:empty].to_s == key.to_s
-    link_to name, url_for(params.permit!merge(empty: key))
+    link_to name, url_for(params.permit!.merge(empty: key))
   end
 
   def seo_type_link(name, key)
-    link_to name, url_for(params.permit!merge(seoable_type: key)), class: ['phead-tabs__link', ('_active' if params[:seoable_type] == key)]
+    link_to name, url_for(params.permit!.merge(seoable_type: key)), class: ['phead-tabs__link', ('_active' if params[:seoable_type] == key)]
   end
 
   def seo_link_for_url(seo)
